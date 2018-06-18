@@ -1,0 +1,33 @@
+<scxml initial="idle" name="life" version="0.9" xmlns="http://www.w3.org/2005/07/scxml">
+  <state id="idle">
+  <onentry><log expr='"IN IDLE"'/></onentry>
+  <transition event="callReceived" target="ringing"></transition>
+  <log expr='"Arithmetic: " + (1 + 2 + 3 + 4 + 5)'    />
+  <onexit>'"Leaving IDLE"'</onexit>
+ </state>
+ 
+ <state id="ringing">
+  <onentry>
+ <log expr='"Entered RINGING"'/>
+  </onentry>
+  <transition event="green" target="answered"></transition>
+  <transition event="red" target="disconnected"></transition>
+   <onexit>'"Leaving RINGING"'</onexit>
+ </state>
+ 
+ <state id="answered">
+  <onentry>
+ <log expr='"Entered ANSWERED"'/>
+  </onentry>
+  <transition event="done" target="disconnected"></transition>
+   <onexit>'"Leaving ANSWERED"'</onexit>
+ </state>
+ 
+ <state id="disconnected">
+ <onentry>
+ <log expr='"Entered DISCONNECTED"'/>
+  </onentry>
+  <transition event="*" target="idle"></transition>
+   <onexit>'"Leaving DISCONNECTED"'</onexit>
+ </state>
+</scxml>
